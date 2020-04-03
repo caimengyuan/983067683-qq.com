@@ -1,0 +1,101 @@
+常用header属性的功能和用法：
+    1、内容信息：
+        Content-Type: application/x-javascript
+        Content-Length: 2000
+    2、长短链接：
+        connection: keep-alive
+        Keep-Alive: timeout=20, max=2
+    3、cookie
+    4、referer
+    5、UA
+    6、accept/encoding/language
+    7、缓存控制
+
+
+Host: 
+    请求的web服务器的域名地址
+
+
+Content-Type:
+    显示此HTTP请求提交的内容类型。一般只有post提交时才需要设置该属性。
+    实例：
+        Content-type: application/x-www-form-urlencoded;charset:UTF-8
+    有关Content-Type属性值可以如下两种编码类型：
+        （1）“application/x-www-form-urlencoded”： 表单数据向服务器提交时所采用的编码类型，默认的缺省值就是“application/x-www-form-urlencoded”。 
+        然而，在向服务器发送大量的文本、包含非ASCII字符的文本或二进制数据时这种编码方式效率很低。
+        （2）“multipart/form-data”： 在文件上载时，所使用的编码类型应当是“multipart/form-data”，它既可以发送文本数据，也支持二进制数据上载。
+        当提交为单单数据时，可以使用“application/x-www-form-urlencoded”；当提交的是文件时，就需要使用“multipart/form-data”编码类型。
+        在Content-Type属性当中还是指定提交内容的charset字符编码。一般不进行设置，它只是告诉web服务器post提交的数据采用的何种字符编码。
+
+
+Connection:
+    表示是否需要持久连接。如果web服务器端看到这里的值为“Keep-Alive”，或者看到请求使用的是HTTP 1.1（HTTP 1.1默认进行持久连接），它就可以利用持久连接的优点，
+    当页面包含多个元素时（例如Applet，图片），显著地减少下载所需要的时间。要实现这一点， web服务器需要在返回给客户端HTTP头信息中发送一个Content-Length
+    （返回信息正文的长度）头，最简单的实现方法是：先把内容写入ByteArrayOutputStream，然 后在正式写出内容之前计算它的大小。
+    实例：
+        Connection: keep-alive
+
+
+Keep-Alive:
+    显示此HTTP连接的Keep-Alive时间。使客户端到服务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive功能避免了建立或者重新建立连接。
+    以前HTTP请求是一站式连接，从HTTP/1.1协议之后，就有了长连接，即在规定的Keep-Alive时间内，连接是不会断开的。
+    实例：
+        Keep-Alive: 300
+
+
+cookie:
+    HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。
+
+
+Referer:
+    包含一个URL，用户从该URL代表的页面出发访问当前请求的页面
+
+
+User-Agent：
+    HTTP客户端运行的浏览器类型的详细信息。通过该头部信息，web服务器可以判断到当前HTTP请求的客户端浏览器类别。
+    实例：
+        User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11
+
+
+Accept：
+    指定客户端能够接收的内容类型，内容类型中的先后次序表示客户端接收的先后次序。
+    例如：
+        Accept:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+
+
+Accept-Language:
+    指定HTTP客户端浏览器用来展示返回信息所优先选择的语言。
+    实例：
+        Accept-Language: zh-cn,zh;q=0.5 这里默认为中文。
+
+
+Accept-Encoding:
+    指定客户端浏览器可以支持的web服务器返回内容压缩编码类型。表示允许服务器在将输出内容发送到客户端以前进行压缩，以节约带宽。
+    而这里设置的就是客户端浏览器所能够支持的返回压缩格式。
+    实例：
+        Accept-Encoding: gzip,deflate
+    备注：
+        其实在百度很多产品线中，apache在给客户端返回页面数据之前，将数据以gzip格式进行压缩。
+
+
+缓存：
+    Cache-Control
+    1、(私有)浏览器缓存
+        私有缓存只能用于单独用户。你可能已经见过浏览器设置中的“缓存”选项。浏览器缓存拥有用户通过 HTTP 下载的所有文档。
+        这些缓存为浏览过的文档提供向后/向前导航，保存网页，查看源码等功能，可以避免再次向服务器发起多余的请求。它同样可以提供缓存内容的离线浏览。
+    2、(共享)代理缓存
+        共享缓存可以被多个用户使用。例如，ISP 或你所在的公司可能会架设一个 web 代理来作为本地网络基础的一部分提供给用户。
+        这样热门的资源就会被重复使用，减少网络拥堵与延迟。
+    
+    ==》常见的 HTTP 缓存只能存储 GET 响应
+
+    禁止进行缓存：Cache-Control: no-store
+    强制确认缓存：Cache-Control: no-cache    每次有请求发出时，缓存会将此请求发到服务器，服务器端会验证请求中所描述的缓存是否过期，若未过期（注：实际就是返回304），则缓存才使用本地缓存副本。
+    私有缓存和公共缓存：Cache-Control: private
+                      Cache-Control: public
+    缓存过期机制：Cache-Control: max-age=31536000   表示资源能够被缓存（保持新鲜）的最大时间
+    缓存验证确认：Cache-Control: must-revalidate
+
+
+
+

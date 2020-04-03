@@ -1,0 +1,28 @@
+<!-- label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此控件。
+就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。
+
+<label> 标签的 for 属性应当与相关元素的 id 属性相同。
+
+value 是发送到服务器的值
+
+提示:"for" 属性可把 label 绑定到另外一个元素。请把 "for" 属性的值设置为相关元素的 id 属性的值。-->
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8"> 
+        <title>菜鸟教程(runoob.com)</title> 
+    </head>
+    <body>
+
+        <p>点击其中一个文本标签选中选项：</p>
+
+        <form action="demo_form.php">
+            <label for="male">Male</label>
+            <input type="radio" name="sex" id="male" value="male"><br>
+            <label for="female">Female</label>
+            <input type="radio" name="sex" id="female" value="female"><br><br>
+            <input type="submit" value="提交">
+        </form>
+
+    </body>
+</html>

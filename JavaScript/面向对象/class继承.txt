@@ -1,0 +1,28 @@
+class 关键字包含了构造函数constructor和定义在原型对象上的函数(没有function关键字)
+
+例子：
+    class Student {
+        constructor(name) {
+            this.name = name;
+        }
+
+        hello() {
+            alert('Hello, ' + this.name + '!');
+        }
+    }  定义一个Student类，实际也是基于原型实现的
+
+class继承：
+
+例子：
+    class PrimaryStudent extends Student {
+        constructor(name, grade) {
+            super(name); // 记得用super调用父类的构造方法!
+            this.grade = grade;
+        }
+
+        myGrade() {
+            alert('I am at grade ' + this.grade);
+        }
+    }
+
+    子类在继承父类的时候，要super调用父类的构造函数，否则父类的构造函数的属性无法正常初始化

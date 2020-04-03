@@ -1,0 +1,29 @@
+js:
+
+    Map是一组键值对的结构，具有极快的查找速度。
+
+    举个例子，假设要根据同学的名字查找对应的成绩，如果用Array实现，需要两个Array：
+
+    var names = ['Michael', 'Bob', 'Tracy'];
+    var scores = [95, 75, 85];
+    给定一个名字，要查找对应的成绩，就先要在names中找到对应的位置，再从scores取出对应的成绩，Array越长，耗时越长。
+
+    如果用Map实现，只需要一个“名字”-“成绩”的对照表，直接根据名字查找成绩，无论这个表有多大，查找速度都不会变慢。用JavaScript写一个Map如下：
+
+    var m = new Map([['Michael', 95], ['Bob', 75], ['Tracy', 85]]);
+    m.get('Michael'); // 95
+
+    初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：
+
+    var m = new Map(); // 空Map
+    m.set('Adam', 67); // 添加新的key-value
+    m.set('Bob', 59);
+    m.has('Adam'); // 是否存在key 'Adam': true
+    m.get('Adam'); // 67
+    m.delete('Adam'); // 删除key 'Adam'
+    m.get('Adam'); // undefined
+
+
+区分开array的map方法
+
+reduce 和 python的？

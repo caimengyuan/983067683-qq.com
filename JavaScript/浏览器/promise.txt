@@ -1,0 +1,27 @@
+在JavaScript的世界中，所有代码都是单线程执行的。
+由于这个“缺陷”，导致JavaScript的所有网络操作，浏览器事件，都必须是异步执行。异步执行可以用回调函数实现：
+
+promise 执行异步操作：
+    把执行代码和处理结果的代码分离开
+    执行代码：承诺执行的代码
+    处理结果：then、catch
+
+new Promise(function (resolve, reject) {
+    log('start new Promise...');
+    var timeOut = Math.random() * 2;
+    log('set timeout to: ' + timeOut + ' seconds.');
+    setTimeout(function () {
+        if (timeOut < 1) {
+            log('call resolve()...');
+            resolve('200 OK');
+        }
+        else {
+            log('call reject()...');
+            reject('timeout in ' + timeOut + ' seconds.');
+        }
+    }, timeOut * 1000);
+}).then(function (r) {
+    log('Done: ' + r);
+}).catch(function (reason) {
+    log('Failed: ' + reason);
+});

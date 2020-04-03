@@ -1,0 +1,36 @@
+DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合
+
+操作dom:
+
+    更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容；
+        例子：
+            1、修改innerHTML的属性（直接对获取到的节点修改文本内容或者修改节点内部的子树元素）
+            2、修改innerText或textContent（无法设置任何HTML标签，区别是innerText不返回隐藏元素的文本，而textContent返回所有的文本）
+
+    遍历：遍历该DOM节点下的子节点，以便进行进一步操作；
+
+    添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点；
+        例子：
+            1、使用appendChild，把一个子节点添加到父节点的最后的一个子节点
+            2、parentElement.insertBefore(newElement, referenceElement);可以把子节点插入到指定位置--referenceElement之前
+
+    删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点。
+        例子：
+            首先要获得该节点本身以及它的父节点，然后，调用父节点的removeChild把自己删掉（注意删除多个节点的时候，children的索引在变化）
+
+一些常用的API：
+    document.getElementById(id)
+    document.getElementsByTagName(name)
+    document.createElement(name)
+    document.querySelector（） 获取节点
+    q1.querySelectorAll('') 根据条件获取节点
+    parentNode.appendChild(node)
+    element.innerHTML
+    element.style.left
+    element.setAttribute()
+    element.getAttribute()
+    element.addEventListener()
+    window.content
+    window.onload
+    window.dump()
+    window.scrollTo()

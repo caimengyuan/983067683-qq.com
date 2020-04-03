@@ -1,0 +1,43 @@
+<!-- <form> 标签用于创建供用户输入的 HTML 表单。
+
+<form> 元素包含一个或多个如下的表单元素：
+    <input>         用户可以在其中输入数据的输入字段
+    <textarea>      定义一个多行的文本输入控件
+    <button>        定义按钮
+    <select>        创建下拉列表，和option一起使用
+    <option>        标签定义下拉列表中的一个选项（一个条目），和select、datalist联合使用
+    <optgroup>      如果你有很多的选项组合, 你可以使用<optgroup> 标签能够很简单的将相关选项组合在一起。
+    <fieldset>      将表单内的相关元素分组，在相关表单元素周围绘制边框
+    <label>         为 input 元素定义标注（标记） -->
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8"> 
+        <title>菜鸟教程(runoob.com)</title> 
+    </head>
+    <body>
+
+        <form action="demo-form.php">
+        First name: <input type="text" name="FirstName" value="Mickey"><br>
+        Last name: <input type="text" name="LastName" value="Mouse"><br>
+        <input type="submit" value="提交">
+        </form>
+        <p>点击"提交"按钮，表单数据将被发送到服务器上的“demo-form.php”。</p>
+
+        <!-- 带有复选框的表单 -->
+        <form action="demo-form.php" method="get">
+            <input type="checkbox" name="vehicle[]" value="Bike"> I have a bike<br>
+            <input type="checkbox" name="vehicle[]" value="Car" checked="checked"> I have a car<br>
+            <input type="submit" value="提交">
+        </form>
+
+        <!-- 带有单选框的表单 -->
+        <form action="demo-form.php" method="get">
+            <input type="radio" name="sex" value="Male"> Male<br>
+            <input type="radio" name="sex" value="Female" checked="checked"> Female<br>
+            <input type="submit" value="提交">
+          </form>
+          
+    </body>
+</html>

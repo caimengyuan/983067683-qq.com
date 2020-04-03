@@ -1,0 +1,42 @@
+<!-- <img> 标签定义 HTML 页面中的图像。
+
+<img> 标签有两个必需的属性：src(显示图像的URL) 和 alt(规定图像的替代文本)。
+
+注释：从技术上讲，图像并不会插入 HTML 页面中，而是链接到 HTML 页面上。<img> 标签的作用是为被引用的图像创建占位符。
+
+提示：通过在 <a> 标签中嵌套 <img> 标签，给图像添加到另一个文档的链接。 -->
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8"> 
+        <title>菜鸟教程(runoob.com)</title> 
+    </head>
+    <body>
+
+        <img src="smiley-2.gif" alt="Smiley face" width="42" height="42">
+
+        <p>插入来自一个文件夹的图片:</p>
+        <img src="stickman-1.gif" alt="Stickman" width="24" height="39">
+        <p>插入来自一个网站的图片::</p>
+        <img src="lamp-4.gif" alt="Lamp" width="15" height="15">
+
+        <!-- 制作图像的链接 -->
+        <p>
+            一个图片链接:
+            <a href="//www.w3cschool.cc">
+            <img src="smiley-2.gif" alt="Go to W3CSchool.cc!" width="42" height="42" border="0">
+            </a>
+        </p>
+
+        <!-- 创建带有可供点击区域的图像地图，每个区域都是一个超级链接 -->
+        <p>点击太阳或其他行星，注意变化：</p>
+        <img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
+        <map name="planetmap">
+        <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+        <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+        <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+        </map>
+        
+    </body>
+</html>

@@ -1,0 +1,22 @@
+JavaScript的原型链和Java的Class区别:
+        
+    它没有“Class”的概念，所有对象都是实例，所谓继承关系不过是把一个对象的原型指向另一个对象而已。
+
+JavaScript对每个创建的对象都会设置一个原型，指向它的原型对象。
+
+创建对象：
+    构造函数---> function Student(name) {
+                    this.name = name;
+                    this.hello = function () {
+                        alert('Hello, ' + this.name + '!');
+                    }
+                }
+    创建对象---> var xiaoming = new Student('小明');
+    注意:如果不写new，这就是一个普通函数，它返回undefined。但是，如果写了new，它就变成了一个构造函数，
+        它绑定的this指向新创建的对象，并默认返回this，也就是说，不需要在最后写return this;。
+    
+    原型链: xiaoming ----> Student.prototype ----> Object.prototype ----> null
+    
+        每个实例对象（ object ）都有一个私有属性（称之为 __proto__ ）指向它的构造函数的原型对象（prototype ）。
+    该原型对象也有一个自己的原型对象( __proto__ ) ，层层向上直到一个对象的原型对象为 null。根据定义，
+    null 没有原型，并作为这个原型链中的最后一个环节。

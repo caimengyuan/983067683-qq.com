@@ -1,0 +1,84 @@
+原型继承和平时接触的继承类似，只是写法不同
+
+例子：
+
+    定义一个函数f，并拥有属性a和b
+    let f = function(){
+        this.a = 1;
+        this.b = 2;
+    }
+
+    创建一个对象o，指向原型对象f
+    let o = new f();
+    （此时对象o拥有了属性a和b）
+
+    在函数f的原型上定义属性：
+    f.prototype.b = 3;
+    f.prototype.c = 4;
+    （此时，o的私有属性prototype：o.[[prototype]]拥有属性b和c
+     o.[[Prototype]].[[Prototype]] 是 Object.prototype.
+     o.[[Prototype]].[[Prototype]].[[Prototype]]是null）
+
+     画图理解！！！
+
+
+    当继承的函数被调用时，this指向的是当前继承的对象，而不是继承的函数所在的原型对象
+    也就是说，当被继承的函数的值改变之后，this指向的都是改变之后的
+    var o = {
+        a: 2,
+        m: function(){
+            return this.a + 1;
+    }
+    };
+
+    console.log(o.m()); // 3
+    // 当调用 o.m 时，'this' 指向了 o.
+
+    var p = Object.create(o);
+    // p是一个继承自 o 的对象
+
+    p.a = 4; // 创建 p 的自身属性 'a'
+    console.log(p.m()); // 5
+    // 调用 p.m 时，'this' 指向了 p
+    // 又因为 p 继承了 o 的 m 函数
+    // 所以，此时的 'this.a' 即 p.a，就是 p 的自身属性 'a' 
+
+
+JavaScript的原型继承实现方式就是：
+
+    定义新的构造函数，并在内部用call()调用希望“继承”的构造函数，并绑定this；
+
+    借助中间函数F实现原型链继承，最好通过封装的inherits函数完成；
+
+    继续在新的构造函数的原型上定义新方法。
+
+    function inherits(Child, Parent) {
+        var F = function () {};
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+    }
+    function Student(props) {
+    this.name = props.name || 'Unnamed';
+    }
+
+    Student.prototype.hello = function () {
+        alert('Hello, ' + this.name + '!');
+    }
+
+    function PrimaryStudent(props) {
+        Student.call(this, props);
+        this.grade = props.grade || 1;
+    }
+
+    // 实现原型继承链:
+    inherits(PrimaryStudent, Student);
+
+    // 绑定其他方法到PrimaryStudent原型:
+    PrimaryStudent.prototype.getGrade = function () {
+        return this.grade;
+    };
+
+
+性能：
+    1、查找属性比较耗时，试图访问不存在的属性时会遍历整个原型链

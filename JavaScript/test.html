@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第一个js页面</title>
+    </head>
+
+    <body>
+        The content of the document......
+        <button>点我呀</button>
+        
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function createParagraph() {
+                let para = document.createElement('p');
+                para.textContent = '你点击了这个按钮！';
+                document.body.appendChild(para);
+            }
+
+            const buttons = document.querySelectorAll('button');
+
+            for(let i = 0; i < buttons.length ; i++) {
+                buttons[i].addEventListener('click', createParagraph);
+            }
+        });
+    </script>
+
+</html>
